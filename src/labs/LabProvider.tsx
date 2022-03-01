@@ -1,7 +1,4 @@
 import React from 'react'
-import './App.css'
-import { MainLayout } from './layout'
-import { WordleLab } from './examples/wordle'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 const queryClient = new QueryClient({
@@ -16,14 +13,9 @@ const queryClient = new QueryClient({
   },
 })
 
-function App() {
+export const LabProvider: React.FC = (props) => {
+  const { children } = props
   return (
-    <MainLayout showToolbar={false}>
-      <QueryClientProvider client={queryClient}>
-        <WordleLab></WordleLab>
-      </QueryClientProvider>
-    </MainLayout>
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   )
 }
-
-export default App

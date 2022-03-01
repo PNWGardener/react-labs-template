@@ -1,53 +1,22 @@
-import { Box, Typography } from "@mui/material"
-import React from "react"
-import { GameBoard, GameTile, GameRow } from '../../labs/wordle/components'
+import { Typography } from '@mui/material'
+import React from 'react'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { WordleGame } from './components/WordleGame'
+import { WordleGameProvider } from './context'
+import { useWordList } from './hooks'
 
-export type Props = {
-  allowRetry?: boolean
-}
-
-interface Guess {
-  word: string[]
-}
-
-export const WordleLab: React.VFC<Props> = () => {
+export const WordleLab: React.VFC = () => {
+  const { words, isFetching } = useWordList()
+  const client = new QueryClient()
   return (
-    <GameBoard>
-      <GameRow>
-        <GameTile letter="r" />
-        <GameTile letter="e" state="match" />
-        <GameTile letter="a" state="miss" />
-        <GameTile letter="c" state="present" />
-        <GameTile letter="t" />
-      </GameRow>
-      <GameRow>
-        <GameTile />
-        <GameTile />
-        <GameTile />
-        <GameTile />
-        <GameTile />
-      </GameRow>
-      <GameRow>
-        <GameTile />
-        <GameTile />
-        <GameTile />
-        <GameTile />
-        <GameTile />
-      </GameRow>
-      <GameRow>
-        <GameTile />
-        <GameTile />
-        <GameTile />
-        <GameTile />
-        <GameTile />
-      </GameRow>
-      <GameRow>
-        <GameTile />
-        <GameTile />
-        <GameTile />
-        <GameTile />
-        <GameTile />
-      </GameRow>
-    </GameBoard>
+    <QueryClientProvider client={client}>
+      {isFetching ? (
+        <Typography variant="body1">Getting Words...</Typography>
+      ) : (
+        <WordleGameProvider words={words ?? []}>
+          <WordleGame></WordleGame>
+        </WordleGameProvider>
+      )}
+    </QueryClientProvider>
   )
 }

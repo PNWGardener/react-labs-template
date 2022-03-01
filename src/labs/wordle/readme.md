@@ -1,6 +1,8 @@
 # Worldle Lab 
 The following lab will focus on using theReact Context API and the `react-query` lib to manage state and actions for a Wordle like game.  A game in which a user will get 6 attempts to guess a random 5-letter word that is selected from a given data source.
 
+
+
 ## Summary
 The `WordleLab` will function similar to Wordle without the custom keyboard.  Instead there will be a textfield that a user types their guess into.  The word entered will be validated to make sure the word is 5 characters long and matches one of the words in the word data source.  If the word is invalid an error message will inform the user that the word is invalid.  If it is a valid attempt the word will be checked against the current selected word and the result will be displayed in the row of boxes that are associated with their current attempt.  Each box will contain a letter of the guessed word and will show whether the letter was a match (green box), was somewhere else in the word (yellow box) or not in the word (gray box).
 
@@ -65,7 +67,7 @@ Below is an example of how this could be done.
 ```typescript
 export const useRandomWord = () => {
   const result = useFetchWordList()
-  const [wordList, setWordList] = useState<string>()
+  const [wordList, setWordList] = useState<string[]>()
   const [randomWord, setRandomWord] = useState<string>()
 
   useEffect(() => {

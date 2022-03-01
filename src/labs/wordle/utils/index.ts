@@ -55,7 +55,7 @@ export const checkLetter = (word: string, letter: string, index: number) => {
   const currentLetter = word.charAt(index)
   if (letter === currentLetter) {
     return correct(letter)
-  } else if(word.includes(letter)) {
+  } else if (word.includes(letter)) {
     return present(letter)
   } else {
     return absent(letter)

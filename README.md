@@ -2,6 +2,55 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+```typescript
+interface LabInfo {
+  
+  component: Component<T>,
+  name: string
+  tags: string[]
+  links: Link[]
+  route: string
+
+}
+```
+
+## Application Structure
+
+- [modules]
+  - [common] *`@react-labs/common`*    
+    - [components]
+    - [hooks]
+    - [utils]
+    - [styles]
+  - [labs] - *`@react-labs/labs`*
+    - [{labName}]
+      - readme.md
+        - Summary
+        - Acceptance Criteria
+        - Guidelines
+        - Links
+      - [docs]
+      - [components]
+      - [hooks]
+      - [utils]
+      - [types]
+      - [context]
+      - [example]
+      - {LabName}.tsx (lab component)
+  - [guides] *`@react-labs/guides`*
+    - [topics]
+    - [snippets]
+  - [dashboard]
+      - [...]
+      - Dashboard.tsx
+
+- [x] Add attempt to state
+- [ ] Update Rendering of board
+- [ ] Update layout
+- [ ] Clean up project
+- [ ] Add win/lose display
+- [ ] Turn LetterStatus to MatchStatus
+
 ## Available Scripts
 
 In the project directory, you can run:

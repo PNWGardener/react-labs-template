@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, SxProps } from '@mui/system'
-import { LetterStatus } from '../types'
+import { LetterStatus } from '../../types'
 
 export type TileStatus = LetterStatus | 'empty'
 
@@ -31,7 +31,7 @@ const tileStateOverrides: StyleStateMap = {
   },
 }
 
-export const GameTile: React.VFC<Props> = (props) => {
+export const BoardTile: React.VFC<Props> = (props) => {
   const { letter, status: state = letter?.length ? 'absent' : 'empty' } = props
   const styleOverrides: SxProps = tileStateOverrides[state] ?? {}
   return (
@@ -40,12 +40,13 @@ export const GameTile: React.VFC<Props> = (props) => {
         color: '#fff',
         flex: 'none',
         textTransform: 'uppercase',
-        margin: '8px',
+        margin: '4px',
         width: 64,
         height: 64,
         border: 2,
         borderColor: 'grey.700',
         fontSize: 32,
+        textAlign: 'center',
         lineHeight: '64px',
         ...styleOverrides,
       }}
