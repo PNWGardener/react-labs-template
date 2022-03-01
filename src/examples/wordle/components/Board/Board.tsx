@@ -18,7 +18,7 @@ const BoardGrid = styled('div')({
 
 export const Board: React.FC = (props) => {
   const { children: rows } = props
-  const 
+
   return (
     <BoardContainer>
       <BoardGrid>{rows}</BoardGrid>
