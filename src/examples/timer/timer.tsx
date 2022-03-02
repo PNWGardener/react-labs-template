@@ -1,9 +1,10 @@
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, Stack, styled, Typography } from '@mui/material'
 
 import React from 'react'
 import { useTimer } from '.'
 import { Time } from './types'
 import logo from '../../logo.svg'
+import { Theme } from '@mui/material'
 
 export type TimerProps = {
   displayFormat?: string
@@ -13,20 +14,29 @@ const TimeDisplay: React.FC = (props) => {
   const { children } = props
   return (
     <>
-      <Typography variant="body1" sx={{ fontSize: '48px' }}>
+      <Typography color="GrayText" variant="body1" sx={{ fontSize: '48px' }}>
         {children}
       </Typography>
     </>
   )
 }
 
-const TimerLogo: React.VFC = () => {
-  return (
-    <>
-      <img src={logo} className="App-logo" alt="logo" />
-    </>
-  )
-}
+const TimerImage = styled('img', {
+  shouldForwardProp: (prop) =>
+    ['src', 'isActive', 'size'].includes(prop.toString()),
+})<{ isActive: boolean; size?: number }>(({ isActive = true, size = 300 }) => ({
+  '@keyframes spinning-image': {
+    from: {
+      transform: 'rotate(0deg)',
+    },
+    to: {
+      transform: 'rotate(360deg)',
+    },
+  },
+  height: size,
+  animation: 'spinning-image infinite 10s linear',
+  animationPlayState: isActive ? 'running' : 'paused',
+}))
 
 export const Timer: React.VFC<TimerProps> = (props) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -50,23 +60,21 @@ export const Timer: React.VFC<TimerProps> = (props) => {
         alignItems: 'center',
       }}
     >
-      <TimerLogo></TimerLogo>
+      <TimerImage src={logo} isActive={isActive}></TimerImage>
       <TimeDisplay>{formatTime(time)}</TimeDisplay>
-      <Box sx={{ display: 'flex' }}>
+      <Stack direction="column" spacing={2} sx={{ display: 'flex' }}>
         {isActive ? (
-          <Button variant="text" onClick={() => pause()}>
-            Pause
+          <Button variant="outlined" color="error" onClick={() => pause()}>
+            Stop
           </Button>
         ) : (
-          <Button variant="text" onClick={() => start()}>
+          <Button variant="outlined" color="success" onClick={() => start()}>
             Start
           </Button>
         )}
 
-        <Button variant="text" onClick={() => reset()}>
-          Reset
-        </Button>
-      </Box>
+        <Button variant="text" color="secondary" onClick={() => reset()}>Reset</Button>
+      </Stack>
     </Box>
   )
 }
