@@ -1,6 +1,42 @@
-# Getting Started with Create React App
+# React Labs
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Application Structure
+
+- [modules]
+  - [common] *`@react-labs/common`*    
+    - [components]
+    - [hooks]
+    - [utils]
+  - [labs] - *`@react-labs/labs`*
+    - [{labName}]
+      - readme.md
+        - Summary
+        - Objectives
+        - Acceptance Criteria
+        - Guide
+        - Links
+      - [components]
+      - [hooks]
+      - [utils]
+      - [solution]
+      - {LabName}.tsx (lab component)
+  - [guides] *`@react-labs/guides`*
+    - [wiki]
+    - [snippets]
+
+
+## Dashboard
+```typescript
+interface LabInfo {
+  
+  component: Component<T>,
+  name: string
+  tags: string[]
+  links: Link[]
+  route: string
+
+}
+```
 
 ## Available Scripts
 

@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@react-labs/*": ["./*"],
+      "@common/*": ["./common/*"],
+      "@labs/*": ["./labs/*"]
+    }
+  }
+}
+

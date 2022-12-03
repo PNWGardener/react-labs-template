@@ -9,10 +9,11 @@ const initialTime: Time = {
   hours: 0,
 }
 
-export const useTimer = (): UseTimer => {
+export const useTimer = (options?: { autoStart?: boolean }): UseTimer => {
+  const { autoStart = false } = options ?? {}
   const [time, setTime] = useState<Time>(initialTime)
   const [ticks, setTicks] = useState(0)
-  const [isActive, setIsActive] = useState(true)
+  const [isActive, setIsActive] = useState(autoStart)
 
   useInterval(() => {
     if (isActive) {
